@@ -7,6 +7,7 @@ const footer = document.querySelector('.footer')
 
 import { Permissions,LoyaltyUser } from './enums'
 import { showReviewTotal, populateUser } from './utils'
+import { Price, Country } from './types'
 
 let isOpen : boolean
 
@@ -36,10 +37,11 @@ const you = {
   firstName: 'Bobby',
   lastName: 'Brown',
   isReturning: true,
-  permissions: Permissions.ADMIN
+  permissions: Permissions.ADMIN,
   age: 35,
   stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
 }
+
 
 const properties : {
   image: string;
@@ -49,7 +51,7 @@ const properties : {
       firstLine: string;
       city: string;
       code: number;
-      country: string;
+      country: Country;
   };
   contact: [number , string];
   isAvailable: boolean;
