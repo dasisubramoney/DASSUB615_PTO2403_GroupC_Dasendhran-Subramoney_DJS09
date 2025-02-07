@@ -32,16 +32,11 @@ const reviews : any[]= [
   },
 ];
 
-const you: {
-    firstName : string;
-    lastName: string;
-    isReturning: boolean;
-    age: number;
-    stayedAt: string[];
-} = {
+const you = {
   firstName: 'Bobby',
   lastName: 'Brown',
   isReturning: true,
+  permissions: Permissions.ADMIN
   age: 35,
   stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
 }
@@ -104,6 +99,18 @@ showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
 
 populateUser(you.isReturning, you.firstName)
 
+let authorityStatus : any
+
+isOpen = true
+
+function showDetails(authorityStatus: (boolean | Permissions), element : HTMLDivElement, price: number) {
+   if (authorityStatus) {
+       const priceDisplay = document.createElement('div')
+       priceDisplay.innerHTML = price.toString() + '/night'
+       element.appendChild(priceDisplay)
+   }
+}
+
 // For loop to add the properties to the homepage 
 for (let i = 0; i < properties.length; i++) {
   const card = document.createElement('div')
@@ -113,6 +120,7 @@ for (let i = 0; i < properties.length; i++) {
   image.setAttribute('src', properties[i].image)
   card.appendChild(image)
   propertyContainer.appendChild(card)
+  showDetails(authorityStatus, card, properties[i].price)
 }
 
 let currentLocation: [string, string, number] = ['Johannesburg', '11:21am', 31]
