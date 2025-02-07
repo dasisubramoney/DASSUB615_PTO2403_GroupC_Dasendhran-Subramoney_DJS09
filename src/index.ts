@@ -3,6 +3,7 @@
 // all TypeScript weakness flags.
 // : number
 const propertyContainer = document.querySelector('.properties')
+const footer = document.querySelector('.footer')
 
 import { showReviewTotal, populateUser } from './utils'
 
@@ -116,3 +117,6 @@ for (let i = 0; i < properties.length; i++) {
   card.appendChild(image)
   propertyContainer.appendChild(card)
 }
+
+let currentLocation: [string, string, number] = ['Johannesburg', '11:21am', 31]
+footer.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + currentLocation[2] + '°'
