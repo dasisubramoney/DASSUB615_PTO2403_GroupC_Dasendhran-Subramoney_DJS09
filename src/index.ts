@@ -58,7 +58,7 @@ const properties : {
       code: number;
       country: string;
   };
-  contact: string;
+  contact: [number , string];
   isAvailable: boolean;
 }[] = [
   {
@@ -71,7 +71,7 @@ const properties : {
         code: 45632,
         country: 'Colombia'
     },
-    contact: 'marywinkle@gmail.com',
+    contact: [ +27848961291,'marywinkle@gmail.com'],
     isAvailable: true  
 },
 {
@@ -84,7 +84,7 @@ const properties : {
         code: 343903,
         country: 'Poland'
     },
-    contact: 'garydavis@hotmail.com',
+    contact: [ +27848961291,'garydavis@hotmail.com'],
     isAvailable: false 
 },
 {
@@ -97,7 +97,7 @@ const properties : {
         code: 35433,
         country: 'United Kingdom',
     },
-    contact: 'andyluger@aol.com',
+    contact: [ +27848961291,'andyluger@aol.com'],
     isAvailable: true
 }
 ]
