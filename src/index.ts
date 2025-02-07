@@ -2,9 +2,9 @@
 // Write a function that will only accept numbers and attend to
 // all TypeScript weakness flags.
 // : number
-const reviewTotalDisplay = document.querySelector("#reviews");
-const returningUserDisplay = document.querySelector('#returning-user')
-const userNameDisplay = document.querySelector('#user')
+const propertyContainer = document.querySelector('.properties')
+
+import { showReviewTotal, populateUser } from './utils'
 
 let isOpen : boolean
 
@@ -33,14 +33,6 @@ const reviews : {
     date: "27-03-2021",
   },
 ];
-
-function showReviewTotal (value : number, reviewer: string, isLoyalty : boolean) {
-  const iconDisplay = isLoyalty ? 'star' : ''
-  reviewTotalDisplay.innerHTML = 'review total '+ value.toString() + '| last reviewed by ' + reviewer+ ' ' + iconDisplay
-}
-
-showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
-
 
 const you: {
     firstName : string;
@@ -110,11 +102,17 @@ const properties : {
 }
 ]
 
-function populateUser(isReturning : boolean, userName : string ) {
-  if (isReturning){
-      returningUserDisplay.innerHTML = 'back'
-  }
-  userNameDisplay.innerHTML = userName
-}
+showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
 
-populateUser(you.isReturning, you.userName)
+populateUser(you.isReturning, you.firstName)
+
+// For loop to add the properties to the homepage 
+for (let i = 0; i < properties.length; i++) {
+  const card = document.createElement('div')
+  card.classList.add('card')
+  card.innerHTML = properties[i].title
+  const image = document.createElement('img')
+  image.setAttribute('src', properties[i].image)
+  card.appendChild(image)
+  propertyContainer.appendChild(card)
+}
