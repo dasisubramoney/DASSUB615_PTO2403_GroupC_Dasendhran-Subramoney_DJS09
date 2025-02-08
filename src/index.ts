@@ -6,7 +6,7 @@ const propertyContainer = document.querySelector('.properties')
 const footer = document.querySelector('.footer')
 
 import { Permissions,LoyaltyUser } from './enums'
-import { showReviewTotal, populateUser } from './utils'
+import { showReviewTotal, populateUser,showDetails } from './utils'
 import { Price, Country } from './types'
 
 let isOpen : boolean
@@ -101,17 +101,6 @@ showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
 
 populateUser(you.isReturning, you.firstName)
 
-let authorityStatus : any
-
-isOpen = true
-
-function showDetails(authorityStatus: (boolean | Permissions), element : HTMLDivElement, price: number) {
-   if (authorityStatus) {
-       const priceDisplay = document.createElement('div')
-       priceDisplay.innerHTML = price.toString() + '/night'
-       element.appendChild(priceDisplay)
-   }
-}
 
 // For loop to add the properties to the homepage 
 for (let i = 0; i < properties.length; i++) {
@@ -122,7 +111,7 @@ for (let i = 0; i < properties.length; i++) {
   image.setAttribute('src', properties[i].image)
   card.appendChild(image)
   propertyContainer.appendChild(card)
-  showDetails(authorityStatus, card, properties[i].price)
+  showDetails(you.permissions, card, properties[i].price)
 }
 
 let currentLocation: [string, string, number] = ['Johannesburg', '11:21am', 31]
