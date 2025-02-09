@@ -15,7 +15,7 @@ import { Review } from './interfaces'
 let isOpen : boolean
 
 // Reviews 
-const reviews : any[]= [
+const reviews : Review[]= [
   {
     name: "Sheia",
     stars: 5,
@@ -138,3 +138,15 @@ function addReviews( array: Review[]) : void{
 }
 
 button.addEventListener('click', () => addReviews(reviews))
+
+// Class for main image
+class MainProperty {
+  src: string
+  title: string
+  reviews: Review[]
+  constructor(src, title, reviews) {
+      this.src = src
+      this.title = title
+      this.reviews = reviews
+  }
+}
