@@ -4,15 +4,24 @@
 // : number
 const propertyContainer = document.querySelector('.properties')
 const footer = document.querySelector('.footer')
-const container = document.querySelector('.container')
+const reviewContainer = document.querySelector('.container')
 const button = document.querySelector('button')
 
 import { Permissions,LoyaltyUser } from './enums'
-import { showReviewTotal, populateUser,showDetails,, getTopTwoReviews } from './utils'
+import { showReviewTotal, populateUser,showDetails,getTopTwoReviews } from './utils'
 import { Price, Country } from './types'
 
 let isOpen : boolean
 
+interface Review {
+  name: string;
+  stars: number;
+  loyaltyUser: LoyaltyUser;
+  date: string;
+}
+
+
+// Reviews 
 const reviews : any[]= [
   {
     name: "Sheia",
