@@ -11,6 +11,7 @@ import { Permissions,LoyaltyUser } from './enums'
 import { showReviewTotal, populateUser,showDetails,getTopTwoReviews } from './utils'
 import { Price, Country } from './types'
 import { Review, Property} from './interfaces'
+import MainProperty from './classes'
 
 let isOpen : boolean
 
@@ -48,7 +49,7 @@ const you = {
 
 const properties : Property[] = [
       {
-        image: '',
+        image: 'images/Image 1.jpg',
         title: 'Colombian Shack',
         price: 45,
         location: {
@@ -61,7 +62,7 @@ const properties : Property[] = [
         isAvailable: true  
     },
     {
-        image: '',
+        image: 'images/Images (2).jpeg',
         title: 'Polish Cottage',
         price: 30,
         location: {
@@ -74,7 +75,7 @@ const properties : Property[] = [
         isAvailable: false 
     },
     {
-        image: '',
+        image: 'images/Images (3).jpeg',
         title: 'London Flat',
         price: 25,
         location: {
@@ -87,7 +88,7 @@ const properties : Property[] = [
         isAvailable: true
     },
     {
-      image: 'images/malaysian-hotel.jpeg',
+      image: 'images/Images (4).jpeg',
       title: 'Malia Hotel',
       price: 35,
       location: {
@@ -140,19 +141,8 @@ function addReviews( array: Review[]) : void{
 button.addEventListener('click', () => addReviews(reviews))
 
 // Class for main image
-class MainProperty {
-  src: string
-  title: string
-  reviews: Review[]
-  constructor(src: string, title: string, reviews: Review[]) {
-      this.src = src
-      this.title = title
-      this.reviews = reviews
-  }
-}
-
 let yourMainProperty = new MainProperty(
-  '',
+  'images/Image 5.jpg',
   'Italian House',
   [{
     name: 'Olive',
