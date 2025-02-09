@@ -10,7 +10,7 @@ const button = document.querySelector('button')
 import { Permissions,LoyaltyUser } from './enums'
 import { showReviewTotal, populateUser,showDetails,getTopTwoReviews } from './utils'
 import { Price, Country } from './types'
-import { Review } from './interfaces'
+import { Review, Property} from './interfaces'
 
 let isOpen : boolean
 
@@ -33,7 +33,6 @@ const reviews : Review[]= [
     stars: 4,
     loyaltyUser: LoyaltyUser.SILVER_USER,
     date: "27-03-2021",
-    description: 'The place was great',
   },
 ];
 
@@ -47,58 +46,59 @@ const you = {
 }
 
 
-const properties : {
-  image: string;
-  title: string;
-  price: number;
-  location: {
-      firstLine: string;
-      city: string;
-      code: number;
-      country: Country;
-  };
-  contact: [number , string];
-  isAvailable: boolean;
-}[] = [
-  {
-    image: '',
-    title: 'Colombian Shack',
-    price: 45,
-    location: {
-        firstLine: 'shack 37',
-        city: 'Bogota',
-        code: 45632,
-        country: 'Colombia'
+const properties : Property[] = [
+      {
+        image: '',
+        title: 'Colombian Shack',
+        price: 45,
+        location: {
+            firstLine: 'shack 37',
+            city: 'Bogota',
+            code: 45632,
+            country: 'Colombia'
+        },
+        contact: [ +27848961291,'marywinkle@gmail.com'],
+        isAvailable: true  
     },
-    contact: [ +27848961291,'marywinkle@gmail.com'],
-    isAvailable: true  
-},
-{
-    image: '',
-    title: 'Polish Cottage',
-    price: 34,
-    location: {
-        firstLine: 'no 23',
-        city: 'Gdansk',
-        code: 343903,
-        country: 'Poland'
+    {
+        image: '',
+        title: 'Polish Cottage',
+        price: 30,
+        location: {
+            firstLine: 'no 23',
+            city: 'Gdansk',
+            code: 343903,
+            country: 'Poland'
+        },
+        contact: [ +27848961291,'garydavis@hotmail.com'],
+        isAvailable: false 
     },
-    contact: [ +27848961291,'garydavis@hotmail.com'],
-    isAvailable: false 
-},
-{
-    image: '',
-    title: 'London Flat',
-    price: 23,
-    location: {
-        firstLine: 'flat 15',
-        city: 'London',
-        code: 35433,
-        country: 'United Kingdom',
+    {
+        image: '',
+        title: 'London Flat',
+        price: 25,
+        location: {
+            firstLine: 'flat 15',
+            city: 'London',
+            code: 35433,
+            country: 'United Kingdom',
+        },
+        contact: [ +27848961291,'andyluger@aol.com'],
+        isAvailable: true
     },
-    contact: [ +27848961291,'andyluger@aol.com'],
-    isAvailable: true
-}
+    {
+      image: 'images/malaysian-hotel.jpeg',
+      title: 'Malia Hotel',
+      price: 35,
+      location: {
+          firstLine: 'Room 4',
+          city: 'Malia',
+          code: 45334,
+          country: 'Malaysia'
+      },
+      contact: [ +60349822083, 'lee34@gmail.com'],
+      isAvailable: false
+  }
 ]
 
 showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
@@ -144,9 +144,24 @@ class MainProperty {
   src: string
   title: string
   reviews: Review[]
-  constructor(src, title, reviews) {
+  constructor(src: string, title: string, reviews: Review[]) {
       this.src = src
       this.title = title
       this.reviews = reviews
   }
 }
+
+let yourMainProperty = new MainProperty(
+  '',
+  'Italian House',
+  [{
+    name: 'Olive',
+        stars: 5,
+        loyaltyUser: LoyaltyUser.GOLD_USER,
+        date: '12-04-2021'
+  }])
+
+const mainImageContainer = document.querySelector('.main-image')
+const image = document.createElement('img')
+image.setAttribute('src', yourMainProperty.src)
+mainImageContainer.appendChild(image)
