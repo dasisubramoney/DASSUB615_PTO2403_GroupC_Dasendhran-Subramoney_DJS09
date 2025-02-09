@@ -4,9 +4,11 @@
 // : number
 const propertyContainer = document.querySelector('.properties')
 const footer = document.querySelector('.footer')
+const container = document.querySelector('.container')
+const button = document.querySelector('button')
 
 import { Permissions,LoyaltyUser } from './enums'
-import { showReviewTotal, populateUser,showDetails } from './utils'
+import { showReviewTotal, populateUser,showDetails,, getTopTwoReviews } from './utils'
 import { Price, Country } from './types'
 
 let isOpen : boolean
@@ -101,7 +103,6 @@ showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
 
 populateUser(you.isReturning, you.firstName)
 
-
 // For loop to add the properties to the homepage 
 for (let i = 0; i < properties.length; i++) {
   const card = document.createElement('div')
@@ -116,3 +117,27 @@ for (let i = 0; i < properties.length; i++) {
 
 let currentLocation: [string, string, number] = ['Johannesburg', '11:21am', 31]
 footer.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + currentLocation[2] + '°'
+
+
+//Code is fixed 
+let count = 0
+function addReviews( array: {
+  name: string;
+  stars: number
+  loyaltyUser: LoyaltyUser;
+  date: string
+}[]) : void{
+    if (!count ) {
+        count++
+        const topTwo = getTopTwoReviews(array)
+        for (let i = 0; i < topTwo.length; i++) {
+            const card = document.createElement('div')
+            card.classList.add('review-card')
+            card.innerHTML = topTwo[i].stars + ' stars from ' + topTwo[i].name
+            reviewContainer.appendChild(card)
+        }
+        container.removeChild(button) 
+    }
+}
+
+button.addEventListener('click', () => addReviews(reviews))
