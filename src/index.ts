@@ -10,16 +10,9 @@ const button = document.querySelector('button')
 import { Permissions,LoyaltyUser } from './enums'
 import { showReviewTotal, populateUser,showDetails,getTopTwoReviews } from './utils'
 import { Price, Country } from './types'
+import { Review } from './interfaces'
 
 let isOpen : boolean
-
-interface Review {
-  name: string;
-  stars: number;
-  loyaltyUser: LoyaltyUser;
-  date: string;
-}
-
 
 // Reviews 
 const reviews : any[]= [
@@ -130,12 +123,7 @@ footer.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + current
 
 //Code is fixed 
 let count = 0
-function addReviews( array: {
-  name: string;
-  stars: number
-  loyaltyUser: LoyaltyUser;
-  date: string
-}[]) : void{
+function addReviews( array: Review[]) : void{
     if (!count ) {
         count++
         const topTwo = getTopTwoReviews(array)
