@@ -4,7 +4,8 @@
 // : number
 const propertyContainer = document.querySelector('.properties')
 const footer = document.querySelector('.footer')
-const reviewContainer = document.querySelector('.container')
+const reviewContainer = document.querySelector('.reviews')
+const container = document.querySelector('.container')
 const button = document.querySelector('button')
 
 import { Permissions,LoyaltyUser } from './enums'
